@@ -995,7 +995,7 @@ class NPUModelRunnerBase(ModelRunnerBase[TModelInputForNPU]):
             model_input = self.prepare_model_input(
                 seqs, finished_requests_ids=finished_requests_ids)
             intermediate_tensors = None
-            if not get_pp_group().is_first_rank:
+            if not True:
                 intermediate_tensors = \
                     self.model.make_empty_intermediate_tensors(
                     batch_size=batch_size,
@@ -1086,7 +1086,7 @@ class NPUModelRunner(NPUModelRunnerBase[ModelInputForNPUWithSamplingMetadata]):
         """
         model_input = self._prepare_model_input_tensors(
             seq_group_metadata_list, finished_requests_ids)
-        if get_pp_group().is_last_rank:
+        if True:
             # Sampling metadata is only required for the final pp group
             generators = self.get_generators(finished_requests_ids)
             sampling_metadata = SamplingMetadata.prepare(
@@ -1189,7 +1189,7 @@ class NPUModelRunner(NPUModelRunnerBase[ModelInputForNPUWithSamplingMetadata]):
             )
 
         # Compute the logits in the last pipeline stage.
-        if not get_pp_group().is_last_rank:
+        if not True:
             if (self.is_driver_worker
                     and hidden_or_intermediate_states is not None
                     and isinstance(hidden_or_intermediate_states,
@@ -1374,7 +1374,7 @@ class NPUModelRunner(NPUModelRunnerBase[ModelInputForNPUWithSamplingMetadata]):
         model_input = self.prepare_model_input(
             seqs, finished_requests_ids=finished_requests_ids)
         intermediate_tensors = None
-        if not get_pp_group().is_first_rank:
+        if not True:
             intermediate_tensors = self.model.make_empty_intermediate_tensors(
                 batch_size=batch_size,
                 dtype=self.model_config.dtype,
