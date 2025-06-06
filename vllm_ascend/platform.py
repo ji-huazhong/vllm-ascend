@@ -45,7 +45,7 @@ else:
     VllmConfig = None
     FlexibleArgumentParser = None
 
-os.environ["RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES"] = "1"
+# os.environ["RAY_EXPERIMENTAL_NOSET_ASCEND_RT_VISIBLE_DEVICES"] = "1"
 
 
 class NPUPlatform(Platform):
